@@ -67,7 +67,7 @@ with col[0]:
     sns.lineplot(data=df_selected, x="분기", y="값", marker="o", ax=ax)
     for i, row in df_selected.iterrows():
         ax.text(row["분기"], row["값"], f"{row['값']:.2f}", ha="center", va="bottom", fontsize=9)
-    ax.set_title(f"{selected_region} 지역 데이터")
+    ax.set_title(f"{selected_region} data")
     ax.set_xlabel("Quarterly")
     ax.set_ylabel("1000won/m^2")
     plt.xticks(rotation=45)
@@ -178,14 +178,14 @@ with col[0]:
     sns.lineplot(x='날짜', y='의복·신발', data=물가, ax=ax1, color='orange', label='의복·신발')
 
     ax1.set_xlabel('날짜')
-    ax1.set_ylabel('소비자물가지수 (CPI)', color='blue')
+    ax1.set_ylabel('CPI', color='blue')
     ax1.tick_params(axis='y', labelcolor='blue')
     ax1.legend(loc='upper left')
 
     # 두 번째 y축: 대출금리
     ax2 = ax1.twinx()
     sns.lineplot(x='날짜', y='대출금리', data=대출금리, ax=ax2, color='red', label='대출금리')
-    ax2.set_ylabel('대출금리 (%)', color='red')
+    ax2.set_ylabel('loan mortage rates', color='red')
     ax2.tick_params(axis='y', labelcolor='red')
     ax2.legend(loc='upper right')
 
