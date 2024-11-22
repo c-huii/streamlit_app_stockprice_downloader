@@ -6,6 +6,19 @@ import plotly.express as px
 import matplotlib.ticker as ticker
 import os
 import matplotlib.font_manager as fm 
+
+def unique(list):
+    x = np.array(list)
+    return np.unique(x)
+
+@st.cache_data
+def fontRegistered():
+    font_dirs = [os.getcwd() + '/customFonts']
+    font_files = fm.findSystemFonts(fontpaths=font_dirs)
+
+    for font_file in font_files:
+        fm.fontManager.addfont(font_file)
+    fm._load_fontmanager(try_read_cache=False)
 # 폰트 설정 (한글 깨짐 방지)
 plt.rcParams['font.family'] = 'Malgun Gothic'  # Windows 환경
 plt.rcParams['axes.unicode_minus'] = False
