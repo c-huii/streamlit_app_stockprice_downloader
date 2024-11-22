@@ -7,18 +7,6 @@ import matplotlib.ticker as ticker
 import os
 import matplotlib.font_manager as fm 
 
-def unique(list):
-    x = np.array(list)
-    return np.unique(x)
-
-@st.cache_data
-def fontRegistered():
-    font_dirs = [os.getcwd() + '/customFonts']
-    font_files = fm.findSystemFonts(fontpaths=font_dirs)
-
-    for font_file in font_files:
-        fm.fontManager.addfont(font_file)
-    fm._load_fontmanager(try_read_cache=False)
 # 폰트 설정 (한글 깨짐 방지)
 plt.rcParams['font.family'] = 'Malgun Gothic'  # Windows 환경
 plt.rcParams['axes.unicode_minus'] = False
@@ -64,7 +52,7 @@ col = st.columns((2.5, 0.9,0.9), gap='medium')
 
 #임대료 라인차트
 with col[0]:
-    st.subheader("임대료 데이터")
+    st.subheader("Rental Fee")
     region_list = df["지역"].unique().tolist()  # 중복 제거
     selected_region = st.selectbox("지역을 선택하세요", region_list)
     
@@ -80,8 +68,8 @@ with col[0]:
     for i, row in df_selected.iterrows():
         ax.text(row["분기"], row["값"], f"{row['값']:.2f}", ha="center", va="bottom", fontsize=9)
     ax.set_title(f"{selected_region} 지역 데이터")
-    ax.set_xlabel("분기")
-    ax.set_ylabel("천원/㎡")
+    ax.set_xlabel("Quarterly")
+    ax.set_ylabel("1000won/m^2")
     plt.xticks(rotation=45)
     st.pyplot(fig_line)
 
