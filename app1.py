@@ -8,10 +8,10 @@ import matplotlib.ticker as ticker
 
 import platform
 from matplotlib import font_manager, rc
-plt.rcParams['font.family'] = 'Malgun Gothic'
+plt.rcParams['font.family'] = 'NanumGothic'
+plt.rcParams['axes.unicode_minus'] = False
 if platform.system() == 'Linux':
     rc('font', family='NanumGothic')
-plt.rcParams['axes.unicode_minus'] = False
 
 # 데이터 읽기
 df = pd.read_csv('./지역별_소규모_임대료.csv')
