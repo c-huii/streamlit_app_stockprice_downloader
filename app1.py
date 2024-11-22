@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 import matplotlib.ticker as ticker
-
+import os
+import matplotlib.font_manager as fm 
 # 폰트 설정 (한글 깨짐 방지)
 plt.rcParams['font.family'] = 'Malgun Gothic'  # Windows 환경
 plt.rcParams['axes.unicode_minus'] = False
