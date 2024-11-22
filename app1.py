@@ -11,10 +11,10 @@ import matplotlib.font_manager as fm
 
 # 폰트 로딩 함수
 def set_font():
-    font_path = os.path.join(os.getcwd(), 'fonts', 'malgun.ttf')  # 프로젝트 폴더에 폰트 위치
+    font_path = os.path.join(os.getcwd(), 'fonts', 'NanumGothic.ttf')  # 프로젝트 폴더에 폰트 위치
     if os.path.exists(font_path):
         fm.fontManager.addfont(font_path)
-        plt.rcParams['font.family'] = 'Malgun Gothic'  # 폰트 설정
+        plt.rcParams['font.family'] = 'Nanum Gothic'  # 폰트 설정
         plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
     else:
         st.warning("폰트 파일을 찾을 수 없습니다.")
