@@ -92,6 +92,7 @@ with col[0]:
     sns.lineplot(data=df_selected, x="분기", y="값", marker="o", ax=ax)
     for i, row in df_selected.iterrows():
         ax.text(row["분기"], row["값"], f"{row['값']:.2f}", ha="center", va="bottom", fontsize=9)
+    ax.set_xlabel("Quarterly")
     ax.set_ylabel("1000won/m2")
     plt.xticks(rotation=45)
     st.pyplot(fig_line,
