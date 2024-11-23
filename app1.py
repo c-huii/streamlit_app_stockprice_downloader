@@ -232,18 +232,18 @@ with col[0]:
     fig_cpi, ax1 = plt.subplots(figsize=(10, 4))
 
     # 첫 번째 y축: 소비자물가지수
-    sns.lineplot(x='날짜', y='음식 및 숙박', data=물가, ax=ax1, color='blue', label='음식 및 숙박')
-    sns.lineplot(x='날짜', y='의복·신발', data=물가, ax=ax1, color='orange', label='의복 및 신발')
+    sns.lineplot(x='날짜', y='음식 및 숙박', data=물가, ax=ax1, color='blue', label='Restaurant and Accommodation')
+    sns.lineplot(x='날짜', y='의복·신발', data=물가, ax=ax1, color='orange', label='Clothes and Shoes')
 
-    ax1.set_xlabel('날짜')
-    ax1.set_ylabel('소비자물가지수CPI)', color='blue')
+    ax1.set_xlabel('Date')
+    ax1.set_ylabel('CPI', color='blue')
     ax1.tick_params(axis='y', labelcolor='blue')
     ax1.legend(loc='upper left')
 
     # 두 번째 y축: 대출금리
     ax2 = ax1.twinx()
-    sns.lineplot(x='날짜', y='대출금리', data=대출금리, ax=ax2, color='red', label='대출금리')
-    ax2.set_ylabel('대출금리 (%)', color='red')
+    sns.lineplot(x='날짜', y='대출금리', data=대출금리, ax=ax2, color='red', label='Loan Rate')
+    ax2.set_ylabel('Loan Rate (%)', color='red')
     ax2.tick_params(axis='y', labelcolor='red')
     ax2.legend(loc='upper right')
 
