@@ -9,16 +9,18 @@ import matplotlib.font_manager as fm
 import folium 
 import matplotlib
 
-# 폰트 로딩 함수
-def set_font():
-    font_path = os.path.join(os.getcwd(), 'fonts', 'NanumGothic.ttf')  # 프로젝트 폴더에 폰트 위치
-    if os.path.exists(font_path):
-        fm.fontManager.addfont(font_path)
-        plt.rcParams['font.family'] = 'Nanum Gothic'  # 폰트 설정
-        plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
-    else:
-        st.warning("폰트 파일을 찾을 수 없습니다.")
-matplotlib.rcParams['font.family'] = 'NanumGothic'
+# Google Fonts CSS URL
+font_url = "https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+
+# 폰트 파일 다운로드 (CSS 파일)
+response = requests.get(font_url)
+
+if response.status_code == 200:
+    with open("nanum_gothic.css", "wb") as f:
+        f.write(response.content)
+    print("CSS 파일을 다운로드 했습니다.")
+else:
+    print(f"다운로드 실패: {response.status_code}")
     
 # 데이터 읽기
 df = pd.read_csv('./지역별_소규모_임대료.csv')
