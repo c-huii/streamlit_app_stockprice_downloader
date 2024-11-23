@@ -92,8 +92,7 @@ with col[0]:
     sns.lineplot(data=df_selected, x="분기", y="값", marker="o", ax=ax)
     for i, row in df_selected.iterrows():
         ax.text(row["분기"], row["값"], f"{row['값']:.2f}", ha="center", va="bottom", fontsize=9)
-    ax.set_xlabel("분기")
-    ax.set_ylabel("천원/㎡")
+    ax.set_ylabel("1000won/m2")
     plt.xticks(rotation=45)
     st.pyplot(fig_line,
              use_container_width=True)
@@ -146,6 +145,30 @@ df_lowest = lowest_values.reset_index()
 df_lowest.columns = ["지역", "최소값"]
 
 # Streamlit layout: with col[1]:
+# 지역 한글을 영어로 매핑하는 딕셔너리
+region_translation = {
+    '강원': 'Gangwon',
+    '경기': 'Gyeonggi',
+    '경남': 'Gyeongnam',
+    '경북': 'Gyeongbuk',
+    '광주': 'Gwangju',
+    '대구': 'Daegu',
+    '대전': 'Daejeon',
+    '부산': 'Busan',
+    '서울': 'Seoul',
+    '세종': 'Sejong',
+    '울산': 'Ulsan',
+    '인천': 'Incheon',
+    '전남': 'Jeonnam',
+    '전북': 'Jeonbuk',
+    '제주': 'Jeju',
+    '충남': 'Chungnam',
+    '충북': 'Chungbuk'
+}
+
+# 한글 지역명 -> 영어로 변환하여 X축 레이블 설정
+df_highest["영어지역"] = df_highest["지역"].map(region_translation)
+
 with col[0]:
     st.subheader("최대값/최소값 막대그래프")
     
@@ -163,11 +186,12 @@ with col[0]:
     ax.set_xlabel("Area")
     ax.set_ylabel("1000won/m2")
     ax.set_xticks([i + bar_width / 2 for i in index])
-    ax.set_xticklabels(df_highest["지역"], rotation=45)  # X축 라벨 회전
+    ax.set_xticklabels(df_highest["영어지역"], rotation=45)  # X축 라벨을 영어로 변경
     ax.legend()
 
     # Streamlit에 그래프 렌더링
     st.pyplot(fig)
+
 
 # 최대값에서 최소값을 뺀 값 계산
 df_comparison = pd.merge(df_highest, df_lowest, on="지역")
