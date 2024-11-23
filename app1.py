@@ -10,20 +10,8 @@ import folium
 import matplotlib
 import requests
 
-# Google Fonts CSS URL
-font_url = "https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
-
-# 폰트 파일 다운로드 (CSS 파일)
-response = requests.get(font_url)
-
-if response.status_code == 200:
-    with open("nanum_gothic.css", "wb") as f:
-        f.write(response.content)
-    print("CSS 파일을 다운로드 했습니다.")
-else:
-    print(f"다운로드 실패: {response.status_code}")
-
 matplotlib.rcParams['font.family'] = 'NanumGothic'
+plt.rcParams['axes.unicode_minus'] = False
 
     
 # 데이터 읽기
