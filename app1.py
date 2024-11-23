@@ -59,10 +59,13 @@ with st.sidebar.expander("대출금리 Dataset"):
 col = st.columns((2.5, 0.9,0.9), gap='medium')
 
 #임대료 라인차트
+# 지역 리스트를 먼저 정의해야 함
+region_list = df["지역"].unique().tolist()  # 중복 제거
+
 with col[0]:
     selected_region = st.selectbox("지역을 선택하세요", region_list)
-    st.subheader("f"{selected_region} 지역 임대료 데이터"")
-    region_list = df["지역"].unique().tolist()  # 중복 제거    
+    st.subheader(f"{selected_region} 지역 임대료 데이터")
+
     
     # 데이터 필터링
     df_selected = df[df["지역"] == selected_region].set_index("지역").T  # 선택 지역 필터링 후 전치
