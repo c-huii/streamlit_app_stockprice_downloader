@@ -29,7 +29,7 @@ df = pd.read_csv('./지역별_소규모_임대료.csv')
 
 #페이지설정
 st.set_page_config(
-    page_title="금융적비교",
+    page_title="소비 및 지출환경 분석",
     page_icon="💵",
     layout="wide",
     initial_sidebar_state="expanded")
