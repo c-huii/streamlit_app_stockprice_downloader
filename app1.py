@@ -36,7 +36,7 @@ st.set_page_config(
 
 # 사이드바 설정
 st.sidebar.title("소상공인 폐업률 분석(1)")
-st.sidebar.subtitle("소비 및 지출환경 분석")
+st.sidebar.markdown("### 소비 및 지출환경 분석")
 
 # 첫 번째 토글 (상위 메뉴)
 with st.sidebar.expander("임대료 Dataset"):
