@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -61,9 +60,9 @@ col = st.columns((2.5, 0.9,0.9), gap='medium')
 
 #임대료 라인차트
 with col[0]:
-    st.subheader("임대료 데이터")
-    region_list = df["지역"].unique().tolist()  # 중복 제거
     selected_region = st.selectbox("지역을 선택하세요", region_list)
+    st.subheader("f"{selected_region} 지역 임대료 데이터"")
+    region_list = df["지역"].unique().tolist()  # 중복 제거    
     
     # 데이터 필터링
     df_selected = df[df["지역"] == selected_region].set_index("지역").T  # 선택 지역 필터링 후 전치
@@ -76,9 +75,8 @@ with col[0]:
     sns.lineplot(data=df_selected, x="분기", y="값", marker="o", ax=ax)
     for i, row in df_selected.iterrows():
         ax.text(row["분기"], row["값"], f"{row['값']:.2f}", ha="center", va="bottom", fontsize=9)
-    ax.set_title(f"{selected_region} 지역 데이터")
-    ax.set_xlabel("분기")
-    ax.set_ylabel("천원/㎡")
+    ax.set_xlabel("Quarterly")
+    ax.set_ylabel("1000won/m2")
     plt.xticks(rotation=45)
     st.pyplot(fig_line)
 
@@ -177,32 +175,30 @@ with col[1]:
 
 # **소비자물가지수 & 대출금리 비교**: 이중 축
 with col[0]:
-    st.subheader("소비자물가지수와 대출금리 비교")
+    st.subheader("소비자물가지수(CPI)와 대출금리 비교 그래프")
 
     # 그래프 크기 설정 (가로 10, 세로 3)
     fig_cpi, ax1 = plt.subplots(figsize=(10, 4))
 
     # 첫 번째 y축: 소비자물가지수
-    sns.lineplot(x='날짜', y='음식 및 숙박', data=물가, ax=ax1, color='blue', label='음식 및 숙박')
-    sns.lineplot(x='날짜', y='의복·신발', data=물가, ax=ax1, color='orange', label='의복·신발')
+    sns.lineplot(x='날짜', y='음식 및 숙박', data=물가, ax=ax1, color='blue', label='Restaurant Business and Accommodation')
+    sns.lineplot(x='날짜', y='의복·신발', data=물가, ax=ax1, color='orange', label='Clothing and Shoes')
 
-    ax1.set_xlabel('날짜')
-    ax1.set_ylabel('소비자물가지수 (CPI)', color='blue')
+    ax1.set_xlabel('YYYY-MM')
+    ax1.set_ylabel('CPI', color='blue')
     ax1.tick_params(axis='y', labelcolor='blue')
     ax1.legend(loc='upper left')
 
     # 두 번째 y축: 대출금리
     ax2 = ax1.twinx()
-    sns.lineplot(x='날짜', y='대출금리', data=대출금리, ax=ax2, color='red', label='대출금리')
-    ax2.set_ylabel('대출금리 (%)', color='red')
+    sns.lineplot(x='날짜', y='대출금리', data=대출금리, ax=ax2, color='red', label='Loan Interest Rate')
+    ax2.set_ylabel('Loan Interest Rate (%)', color='red')
     ax2.tick_params(axis='y', labelcolor='red')
     ax2.legend(loc='upper right')
 
     # x축 값 10개마다 표시
     plt.xticks(rotation=45, ha='right')  # x축 값 기울이기
     ax1.set_xticks(ax1.get_xticks()[::10])  # 10개마다 x축 값 표시
-
-    plt.title("소비자물가지수와 대출금리 그래프")
 
     # 그래프 출력
     st.pyplot(fig_cpi)
