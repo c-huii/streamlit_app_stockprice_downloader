@@ -81,7 +81,8 @@ with col[0]:
     ax.set_xlabel("Quarterly")
     ax.set_ylabel("1000won/m2")
     plt.xticks(rotation=45)
-    st.pyplot(fig_line)
+    st.pyplot(fig_line,
+             use_container_width=True,)
 
 
     
@@ -204,4 +205,5 @@ with col[0]:
     ax1.set_xticks(ax1.get_xticks()[::10])  # 10개마다 x축 값 표시
 
     # 그래프 출력
-    st.pyplot(fig_cpi)
+    st.pyplot(fig_cpi,
+             use_container_width=True,)
