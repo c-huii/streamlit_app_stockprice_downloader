@@ -295,6 +295,8 @@ with col[2]:
             - 3분기(7~9월)에 폐업률이 크게 상승하는 추세를 확인
             ''')
 
+with col[1]:
+    st.markdown("<div style='height: 95px;'></div>", unsafe_allow_html=True)
 
 with col[1]:
     st.subheader(f"{selected_district} 폐업률")
